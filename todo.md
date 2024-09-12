@@ -1,0 +1,3 @@
+- CRUD para metas Metas
+    - Metas podem ser Abertar/Realizadas
+- Sistema de Mensagens
