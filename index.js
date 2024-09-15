@@ -5,6 +5,15 @@ let mensagem = "Bem vindo!";
 
 
 // Métodos
+const validaMetas = () => {
+    if(metas.length === 0){
+        mensagem = "Nenhuma meta cadastrada";
+        return false;
+    }
+
+    return true;
+}
+
 const cadastrarMeta = async () => {
     const meta = await input({ message: "Digite a meta:"})
 
@@ -23,9 +32,7 @@ const cadastrarMeta = async () => {
 }
 
 const listarMetas = async () => {
-    // Para quando nenhuma meta foi cadastrada
-    if(metas.length == 0){
-        mensagem = "Nenhuma meta cadastrada"
+    if (!validaMetas()) {
         return
     }
 
@@ -59,12 +66,10 @@ const listarMetas = async () => {
 }
 
 const metasRealizadas = async () => {
-    // Para quando nenhuma meta foi cadastrada
-    if(metas.length == 0){
-        mensagem = "Nenhuma meta cadastrada"
+    if (!validaMetas()) {
         return
     }
-    
+
     const realizadas = metas.filter((meta) => {
         return meta.checked
     })
@@ -81,10 +86,8 @@ const metasRealizadas = async () => {
     })
 }
 
-const metasEmAberto = async() => {
-    // Para quando nenhuma meta foi cadastrada
-    if(metas.length == 0){
-        mensagem = "Nenhuma meta cadastrada"
+const metasEmAberto = async () => {
+    if (!validaMetas()) {
         return
     }
 
@@ -104,10 +107,8 @@ const metasEmAberto = async() => {
     })
 }
 
-const deletarMetas = async() => {
-    // Para quando nenhuma meta foi cadastrada
-    if(metas.length == 0){
-        mensagem = "Nenhuma meta cadastrada"
+const deletarMetas = async () => {
+    if (!validaMetas()) {
         return
     }
 
@@ -199,6 +200,7 @@ const start = async () => {
                 await deletarMetas()
                 break
             case "sair":
+                console.log("Encerrando a execução")
                 return
         }
     }
